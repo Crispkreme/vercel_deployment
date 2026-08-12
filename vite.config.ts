@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';
 import { bunny } from 'laravel-vite-plugin/fonts';
 import { defineConfig } from 'vite';
+import { resolve } from 'node:path';
 
 export default defineConfig({
     plugins: [
@@ -17,12 +18,15 @@ export default defineConfig({
                 }),
             ],
         }),
+
         inertia(),
+
         react({
             babel: {
                 plugins: ['babel-plugin-react-compiler'],
             },
         }),
+
         tailwindcss(),
 
         // Run Wayfinder locally, but not during Vercel's Node build
@@ -34,4 +38,10 @@ export default defineConfig({
               ]
             : []),
     ],
+
+    resolve: {
+        alias: {
+            '@': resolve(__dirname, 'resources/js'),
+        },
+    },
 });
