@@ -25,13 +25,8 @@ export default defineConfig({
         }),
         tailwindcss(),
 
-        // Run Wayfinder locally, but not during Vercel's Node build
-        ...(!process.env.VERCEL
-            ? [
-                  wayfinder({
-                      formVariants: true,
-                  }),
-              ]
-            : []),
+        wayfinder({
+            formVariants: true,
+        }),
     ],
 });
